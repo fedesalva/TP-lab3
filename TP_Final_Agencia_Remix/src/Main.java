@@ -1,5 +1,17 @@
+import File.PersistenceCollecion;
+
+import java.util.List;
+
 public class Main {
     public static void main(String args[]){
+
+        try {
+        //archivo
+        String empleadosFile = "Empleados";
+        String clientesFile = "CLientes";
+        String unidadesFile = "Unidades";
+        String viajesFile = "Viajes";
+
 
         Agencia agencia=new Agencia();
 
@@ -8,6 +20,9 @@ public class Main {
         agencia.getEmpleados().addAll(menu.cargaEmpleado());
         agencia.getClientes().addAll(menu.cargaCliente());
         agencia.getUnidades().addAll(menu.cargaUnidad());
+
+
+
 
         //Carga de viajes
         Viaje viaje_1 =  new Viaje((Chofer)agencia.getEmpleados().get(0),agencia.getClientes().get(0),agencia.getUnidades().get(0));
@@ -54,7 +69,7 @@ public class Main {
 
         //recaudacion total
         agencia.calcularRecaudacion();
-        System.out.println(agencia.getRecaudacion());
+        System.out.println("Recaudacion de la Agencia: " + agencia.getRecaudacion());
 
         //Salario del chofer
         Chofer aux = ((Chofer) agencia.getEmpleados().get(0));
@@ -63,7 +78,15 @@ public class Main {
         System.out.println("Cantidad de viajes del chofer: " + aux.getCantViajes());
 
 
+        //carga en archvo
 
+             PersistenceCollecion<Empleado> empleadoPersistenceCollecion = new PersistenceCollecion<>();
+
+            empleadoPersistenceCollecion.WriteIntoFile(agencia.getEmpleados(),empleadosFile);
+
+        }catch (Exception e) {
+            System.out.println("ERROR de programa");
+        }
 
     }
 }
