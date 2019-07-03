@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Viaje {
+public class Viaje implements Serializable {
 
     private int id;
     private Chofer chofer;

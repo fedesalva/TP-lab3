@@ -1,4 +1,6 @@
-public abstract class Unidad {
+import java.io.Serializable;
+
+public abstract class Unidad implements Serializable {
     private int id;
     private String dominio;
     private String marca;
